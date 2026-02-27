@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import type { CharacterDefinition, Point, UserStroke } from '../data/types';
 import StrokeGuide from './StrokeGuide';
 
@@ -31,7 +31,7 @@ export default function TracingCanvas({
 }: TracingCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const sizeRef = useRef(300);
+  const [canvasSize, setCanvasSize] = useState(300);
 
   const getCanvasPoint = useCallback((e: React.PointerEvent<HTMLCanvasElement>): Point => {
     const canvas = canvasRef.current;
@@ -55,10 +55,9 @@ export default function TracingCanvas({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const size = sizeRef.current;
-    const scale = size / 109;
+    const scale = canvasSize / 109;
 
-    ctx.clearRect(0, 0, size, size);
+    ctx.clearRect(0, 0, canvasSize, canvasSize);
 
     // Draw completed user strokes
     for (const stroke of userStrokes) {
@@ -88,7 +87,7 @@ export default function TracingCanvas({
         ctx.stroke();
       }
     }
-  }, [userStrokes, currentPoints, currentColors]);
+  }, [userStrokes, currentPoints, currentColors, canvasSize]);
 
   // Resize handling
   useEffect(() => {
@@ -101,7 +100,7 @@ export default function TracingCanvas({
       const maxSize = Math.min(containerWidth, window.innerHeight * 0.5);
       const size = Math.floor(maxSize);
 
-      sizeRef.current = size;
+      setCanvasSize(size);
       canvas.width = size;
       canvas.height = size;
       canvas.style.width = `${size}px`;
@@ -125,8 +124,8 @@ export default function TracingCanvas({
     >
       <div style={{
         position: 'relative',
-        width: sizeRef.current,
-        height: sizeRef.current,
+        width: canvasSize,
+        height: canvasSize,
         maxWidth: '100%',
         aspectRatio: '1',
         border: '3px solid #E8D8C8',
@@ -140,7 +139,7 @@ export default function TracingCanvas({
           currentStrokeIndex={currentStrokeIndex}
           completedStrokes={completedStrokes}
           showStartHint={showStartHint}
-          size={sizeRef.current}
+          size={canvasSize}
         />
 
         {/* Canvas drawing layer */}

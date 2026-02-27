@@ -44,12 +44,20 @@ export default function PracticePage() {
   const [showBanner, setShowBanner] = useState(false);
   const [demoPlaying, setDemoPlaying] = useState(false);
 
+  // Reset banner when character changes (adjusting state during render)
+  const [prevChar, setPrevChar] = useState(decodedChar);
+  if (decodedChar !== prevChar) {
+    setPrevChar(decodedChar);
+    setShowBanner(false);
+  }
+
   useEffect(() => {
     if (characterData) {
-      tracing.initCharacter(characterData);
-      setShowBanner(false);
+      tracing.initCharacter();
       speak(decodedChar);
     }
+    // tracing.initCharacter and speak are stable callbacks
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterData, decodedChar]);
 
   const handlePointerUp = useCallback(() => {

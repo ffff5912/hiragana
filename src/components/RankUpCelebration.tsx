@@ -1,6 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { RankDefinition } from '../data/types';
 import RankBadge from './RankBadge';
+
+function generateConfetti(rankColor: string) {
+  return Array.from({ length: 25 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    color: [rankColor, '#FF6B6B', '#4ECDC4', '#FFE66D', '#A8E6CF'][Math.floor(Math.random() * 5)],
+    delay: Math.random() * 0.5,
+  }));
+}
 
 interface RankUpCelebrationProps {
   rank: RankDefinition;
@@ -8,17 +17,7 @@ interface RankUpCelebrationProps {
 }
 
 export default function RankUpCelebration({ rank, onClose }: RankUpCelebrationProps) {
-  const [confetti, setConfetti] = useState<Array<{ id: number; x: number; color: string; delay: number }>>([]);
-
-  useEffect(() => {
-    const particles = Array.from({ length: 25 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      color: [rank.color, '#FF6B6B', '#4ECDC4', '#FFE66D', '#A8E6CF'][Math.floor(Math.random() * 5)],
-      delay: Math.random() * 0.5,
-    }));
-    setConfetti(particles);
-  }, [rank.color]);
+  const [confetti] = useState(() => generateConfetti(rank.color));
 
   return (
     <div style={{

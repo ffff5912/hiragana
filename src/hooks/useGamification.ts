@@ -16,8 +16,8 @@ export function useGamification() {
   const [rankUpEvent, setRankUpEvent] = useState<RankDefinition | null>(null);
 
   const recordScore = useCallback((type: CharacterType, char: string, score: number, stars: number) => {
-    const updated = updateCharacterProgress(type, char, score, stars);
-    const withStreak = updateStreakData();
+    updateCharacterProgress(type, char, score, stars);
+    updateStreakData();
     // Merge: updateCharacterProgress and updateStreakData both load/save independently
     // Use the latest from storage after both operations
     const merged = loadProgress();
