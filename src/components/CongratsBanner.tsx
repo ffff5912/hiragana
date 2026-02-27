@@ -1,7 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import StarRating from './StarRating';
 import { getStarLabel, getScorePercent } from '../hooks/useScoring';
 import type { StrokeScore } from '../lib/scoring';
+
+function generateConfetti(count: number) {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    color: ['#FF6B6B', '#4ECDC4', '#FFE66D', '#A8E6CF', '#FF8A80'][Math.floor(Math.random() * 5)],
+    delay: Math.random() * 0.5,
+  }));
+}
 
 interface CongratsBannerProps {
   score: StrokeScore;
@@ -11,19 +20,7 @@ interface CongratsBannerProps {
 }
 
 export default function CongratsBanner({ score, onRetry, onNext, hasNext }: CongratsBannerProps) {
-  const [confetti, setConfetti] = useState<Array<{ id: number; x: number; color: string; delay: number }>>([]);
-
-  useEffect(() => {
-    if (score.stars >= 2) {
-      const particles = Array.from({ length: 20 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        color: ['#FF6B6B', '#4ECDC4', '#FFE66D', '#A8E6CF', '#FF8A80'][Math.floor(Math.random() * 5)],
-        delay: Math.random() * 0.5,
-      }));
-      setConfetti(particles);
-    }
-  }, [score.stars]);
+  const [confetti] = useState(() => score.stars >= 2 ? generateConfetti(20) : []);
 
   return (
     <div style={{

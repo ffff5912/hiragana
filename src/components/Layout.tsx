@@ -5,10 +5,11 @@ interface LayoutProps {
   children: ReactNode;
   title?: string;
   showBack?: boolean;
+  leftAction?: ReactNode;
   rightAction?: ReactNode;
 }
 
-export default function Layout({ children, title, showBack = false, rightAction }: LayoutProps) {
+export default function Layout({ children, title, showBack = false, leftAction, rightAction }: LayoutProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === '/';
@@ -20,7 +21,7 @@ export default function Layout({ children, title, showBack = false, rightAction 
       flexDirection: 'column',
       overflow: 'hidden',
     }}>
-      {(title || showBack || rightAction) && (
+      {(title || showBack || leftAction || rightAction) && (
         <header style={{
           height: 'var(--header-height)',
           minHeight: 'var(--header-height)',
@@ -33,7 +34,7 @@ export default function Layout({ children, title, showBack = false, rightAction 
           zIndex: 10,
         }}>
           <div style={{ width: 48, display: 'flex', justifyContent: 'flex-start' }}>
-            {showBack && !isHome && (
+            {showBack && !isHome ? (
               <button
                 onClick={() => navigate(-1)}
                 style={{
@@ -49,7 +50,7 @@ export default function Layout({ children, title, showBack = false, rightAction 
               >
                 ←
               </button>
-            )}
+            ) : leftAction || null}
           </div>
           {title && (
             <h1 style={{

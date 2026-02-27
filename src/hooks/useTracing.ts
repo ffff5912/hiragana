@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import type { Point, UserStroke, CharacterDefinition } from '../data/types';
 import { distance } from '../lib/geometry';
 import { getGlyphDistanceColor, scoreStrokeAgainstGlyph } from '../lib/glyphHitTest';
@@ -46,9 +46,9 @@ export function useTracing(character: CharacterDefinition | null) {
   });
 
   const stateRef = useRef(state);
-  stateRef.current = state;
+  useEffect(() => { stateRef.current = state; }, [state]);
 
-  const initCharacter = useCallback((_char: CharacterDefinition) => {
+  const initCharacter = useCallback(() => {
     setState({
       currentStrokeIndex: 0,
       userStrokes: [],
@@ -64,7 +64,7 @@ export function useTracing(character: CharacterDefinition | null) {
 
   const reset = useCallback(() => {
     if (character) {
-      initCharacter(character);
+      initCharacter();
     }
   }, [character, initCharacter]);
 

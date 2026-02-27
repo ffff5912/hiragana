@@ -28,6 +28,23 @@ export default function HomePage() {
 
   return (
     <Layout
+      leftAction={
+        <button
+          onClick={() => setShowDressUp(true)}
+          style={{
+            width: 48,
+            height: 48,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: 20,
+            borderRadius: '50%',
+          }}
+          aria-label="きせかえ"
+        >
+          👗
+        </button>
+      }
       rightAction={
         <button
           onClick={toggleSound}
@@ -56,34 +73,12 @@ export default function HomePage() {
         gap: 20,
       }}>
         {/* Mascot */}
-        <div style={{ position: 'relative' }}>
-          <MascotSvg
-            stage={mascotStage.stage}
-            mood="idle"
-            equippedItems={equippedItems}
-            size={120}
-          />
-          <button
-            onClick={() => setShowDressUp(true)}
-            style={{
-              position: 'absolute',
-              bottom: -4,
-              right: -8,
-              width: 32,
-              height: 32,
-              borderRadius: '50%',
-              background: 'var(--color-bg-card)',
-              boxShadow: 'var(--shadow-sm)',
-              fontSize: 14,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            aria-label="きせかえ"
-          >
-            👗
-          </button>
-        </div>
+        <MascotSvg
+          stage={mascotStage.stage}
+          mood="idle"
+          equippedItems={equippedItems}
+          size={120}
+        />
 
         {/* Title */}
         <div style={{ textAlign: 'center' }}>

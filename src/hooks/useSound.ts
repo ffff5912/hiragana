@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 let audioContext: AudioContext | null = null;
 
@@ -33,7 +33,7 @@ function playTone(frequency: number, duration: number, type: OscillatorType = 's
 
 export function useSound(enabled: boolean) {
   const enabledRef = useRef(enabled);
-  enabledRef.current = enabled;
+  useEffect(() => { enabledRef.current = enabled; }, [enabled]);
 
   const playStrokeComplete = useCallback(() => {
     if (!enabledRef.current) return;
