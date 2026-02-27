@@ -1,0 +1,44 @@
+:root {
+  /* Colors */
+  --color-bg: #FFF8F0;
+  --color-bg-card: #FFFFFF;
+  --color-primary: #FF6B6B;
+  --color-primary-dark: #E55A5A;
+  --color-secondary: #4ECDC4;
+  --color-accent: #FFE66D;
+  --color-text: #2D3436;
+  --color-text-light: #636E72;
+  --color-text-muted: #B2BEC3;
+  --color-border: #DFE6E9;
+  --color-success: #4CAF50;
+  --color-warning: #FFC107;
+  --color-error: #F44336;
+  --color-star-gold: #FFD700;
+  --color-star-silver: #C0C0C0;
+  --color-star-bronze: #CD7F32;
+  --color-star-empty: #E0E0E0;
+  --color-locked: #B0B0B0;
+
+  /* Canvas colors */
+  --color-guide: #E0E0E0;
+  --color-guide-grid: #F0F0F0;
+  --color-stroke-good: #4CAF50;
+  --color-stroke-ok: #FFC107;
+  --color-stroke-bad: #F44336;
+  --color-start-point: #FF6B6B;
+
+  /* Sizes */
+  --header-height: 56px;
+  --touch-target-min: 48px;
+  --card-size: 64px;
+  --border-radius: 12px;
+  --border-radius-lg: 16px;
+
+  /* Font */
+  --font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Rounded Mplus 1c', sans-serif;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
