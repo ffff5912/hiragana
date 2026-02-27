@@ -60,27 +60,6 @@ export default function StrokeGuide({
         </text>
       )}
 
-      {/* Stroke order paths */}
-      {!isComplete && character.strokes.map((stroke) => {
-        const isDone = stroke.index < completedStrokes;
-        const isCurrent = stroke.index === currentStrokeIndex;
-        if (isDone) return null;
-
-        return (
-          <path
-            key={stroke.index}
-            d={stroke.path}
-            fill="none"
-            stroke={isCurrent ? '#FF6B6B' : '#BDBDBD'}
-            strokeWidth={isCurrent ? 2.5 : 1.5}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            opacity={isCurrent ? 0.7 : 0.35}
-            strokeDasharray={isCurrent ? undefined : '3,3'}
-          />
-        );
-      })}
-
       {/* Start point indicators with stroke numbers */}
       {!isComplete && startPoints && startPoints.map((pt, i) => {
         if (i >= character.strokeCount) return null;
