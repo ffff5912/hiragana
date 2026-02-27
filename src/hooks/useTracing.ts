@@ -64,7 +64,7 @@ export function useTracing(character: CharacterDefinition | null) {
 
   const reset = useCallback(() => {
     if (character) {
-      initCharacter(character);
+      initCharacter();
     }
   }, [character, initCharacter]);
 
