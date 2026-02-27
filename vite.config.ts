@@ -7,11 +7,12 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['vite.svg', 'icons/*.png', 'sounds/*.mp3'],
+      includeAssets: ['vite.svg', 'icons/*.png', 'sounds/*.mp3', 'fonts/*.ttf'],
       manifest: {
         name: 'もじなぞり - ひらがな・カタカナ学習',
         short_name: 'もじなぞり',
         description: 'ひらがな・カタカナをなぞって楽しく学ぼう！',
+        lang: 'ja',
         theme_color: '#FF6B6B',
         background_color: '#FFF8F0',
         display: 'standalone',
@@ -37,7 +38,8 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,mp3,woff2}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,mp3,woff2,ttf}'],
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
       },
     }),
   ],
