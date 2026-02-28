@@ -1,7 +1,15 @@
 @font-face {
-  font-family: 'Zen Maru Gothic';
-  src: url('/fonts/ZenMaruGothic-Regular.ttf') format('truetype');
+  font-family: 'Klee One';
+  src: url('/fonts/KleeOne-Regular.ttf') format('truetype');
   font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Klee One';
+  src: url('/fonts/KleeOne-SemiBold.ttf') format('truetype');
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
@@ -43,7 +51,7 @@
   --border-radius-lg: 16px;
 
   /* Font */
-  --font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Rounded Mplus 1c', sans-serif;
+  --font-family: 'Klee One', 'Hiragino Maru Gothic ProN', 'Yu Gothic', sans-serif;
 
   /* Shadows */
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
